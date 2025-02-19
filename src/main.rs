@@ -290,11 +290,11 @@ fn main() -> Result<(), Box<dyn Error>> {
         .unwrap_or(repo_name)
         .replace(|c: char| !c.is_ascii_alphanumeric() && c != '-' && c != '_', "-");
 
-    if repo_name.is_empty() {
+    let repo_name = if repo_name.is_empty() {
         "repository".to_string()
     } else {
         repo_name.to_string()
-    }
+    };
 
     // Process repository and generate markdown
     let processor = FileProcessor::new();
